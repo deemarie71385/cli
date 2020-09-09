@@ -22,6 +22,9 @@ import (
 
 func runCommand(httpClient *http.Client, cli string) (*test.CmdOut, error) {
 	io, _, stdout, stderr := iostreams.Test()
+	// TODO debug; this test suite /should/ pass when tty is mimicked
+	io.SetStdoutTTY(true)
+	io.SetStdinTTY(true)
 	fac := &cmdutil.Factory{
 		IOStreams: io,
 		HttpClient: func() (*http.Client, error) {
