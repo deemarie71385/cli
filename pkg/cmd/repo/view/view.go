@@ -154,15 +154,15 @@ func viewRun(opts *ViewOptions) error {
 	}
 
 	repoData := struct {
-		FullName    string
-		Description string
-		Readme      string
-		View        string
+		FullName    template.HTML
+		Description template.HTML
+		Readme      template.HTML
+		View        template.HTML
 	}{
-		FullName:    utils.Bold(fullName),
-		Description: description,
-		Readme:      readmeContent,
-		View:        utils.Gray(fmt.Sprintf("View this repository on GitHub: %s", openURL)),
+		FullName:    template.HTML(utils.Bold(fullName)),
+		Description: template.HTML(description),
+		Readme:      template.HTML(readmeContent),
+		View:        template.HTML(utils.Gray(fmt.Sprintf("View this repository on GitHub: %s", openURL))),
 	}
 
 	err = tmpl.Execute(stdout, repoData)
